@@ -23,7 +23,6 @@ from abc import ABC, abstractmethod
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 
-
 class Request(ABC):
     @abstractmethod
     def get(self, handler: BaseHTTPRequestHandler) -> None:

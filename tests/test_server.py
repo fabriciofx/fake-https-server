@@ -22,10 +22,8 @@
 import http.client
 import ssl
 from pathlib import Path
-
 from fake_https_server.request import ContentGet
 from fake_https_server.server import Daemon, FakeHttpServer, FakeHttpsServer
-
 
 def test_fake_http_server() -> None:
     msg = "It works"
@@ -37,7 +35,6 @@ def test_fake_http_server() -> None:
     content = response.read().decode()
     server.stop()
     assert content == msg
-
 
 def test_fake_https_server() -> None:
     ca_file = Path(__file__).parent.parent / "certificates" / "ca.crt"
