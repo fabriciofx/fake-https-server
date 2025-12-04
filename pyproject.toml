@@ -10,8 +10,8 @@ keywords = ["fake", "mock", "http", "https", "server", "request"]
 dependencies = ["random-port>=0.0.5"]
 
 [project.urls]
-homepage = "https://github.com/fabriciofx/fake_https_server"
-bug-tracker = "https://github.com/fabriciofx/fake_https_server/issues"
+homepage = "https://github.com/fabriciofx/fake-https-server"
+bug-tracker = "https://github.com/fabriciofx/fake-https-server/issues"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
