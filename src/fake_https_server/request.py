@@ -41,7 +41,7 @@ class ContentGet(Request):
 
 
 class FileContentGet(Request):
-    def __init__(self, filename: str) -> None:
+    def __init__(self, filename: str | Path) -> None:
         self.__filename = filename
 
     def get(self, handler: BaseHTTPRequestHandler) -> None:

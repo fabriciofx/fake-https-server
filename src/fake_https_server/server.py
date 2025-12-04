@@ -58,7 +58,7 @@ class HandlerWrapper(BaseHTTPRequestHandler):
         self.__request = request
         super().__init__(*args, **kwargs)
 
-    def log_message(self, fmt: str, *args: Any) -> None:
+    def log_message(self, format: str, *args: Any) -> None:
         pass
 
     def do_GET(self) -> None:
