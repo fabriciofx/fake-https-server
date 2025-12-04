@@ -20,3 +20,9 @@ addopts = "-n auto"
 
 [dependency-groups]
 dev = ["pytest-xdist>=3.8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"fake_https_server" = ["py.typed"]
