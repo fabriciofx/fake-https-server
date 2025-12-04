@@ -20,26 +20,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-PYTHON=python
-PIP=pip
-RUFF=ruff
-PYTEST=pytest
-ACTIVATE=. .venv/bin/activate
-
 .PHONY: install tests lint format clean
 
 install:
-	$(PYTHON) -m venv .venv
-	$(ACTIVATE) && $(PIP) install -r requirements.txt
+	uv sync
 
 tests:
-	$(ACTIVATE) && $(PYTEST)
+	uv run pytest
 
 lint:
-	$(ACTIVATE) && $(RUFF) check .
+	uv run ruff check .
 
 format:
-	$(ACTIVATE) && $(RUFF) format .
+	uv run ruff format .
 
 clean:
 	rm -rf .venv dist *.egg-info

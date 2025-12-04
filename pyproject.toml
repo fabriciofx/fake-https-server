@@ -1,28 +1,22 @@
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "fake_https_server"
+name = "fake-https-server"
 version = "0.0.8"
 description = "Fake http and https servers"
 authors = [{ name = "Fabrício Barros Cabral", email = "fabriciofx@gmail.com" }]
 readme = "README.md"
 license = "MIT"
+requires-python = ">=3.14"
 keywords = ["fake", "mock", "http", "https", "server", "request"]
-dependencies = ["random_port"]
+dependencies = ["random-port>=0.0.5"]
 
 [project.urls]
-"Homepage" = "https://github.com/fabriciofx/fake_https_server"
-"Bug Tracker" = "https://github.com/fabriciofx/fake_https_server/issues"
-
-[project.optional-dependencies]
-dev = ["pytest", "ruff"]
-
-[tool.setuptools]
-packages = ["fake_https_server"]
+homepage = "https://github.com/fabriciofx/fake_https_server"
+bug-tracker = "https://github.com/fabriciofx/fake_https_server/issues"
 
 [tool.pytest.ini_options]
-addopts = [
-    "--numprocesses=auto",
-]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-n auto"
+
+[dependency-groups]
+dev = ["pytest-xdist>=3.8.0"]
