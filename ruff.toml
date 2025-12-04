@@ -52,7 +52,7 @@ exclude = [
     "node_modules",
     "site-packages",
     "tests/contents",
-    "venv"
+    "venv",
 ]
 
 # Max line length.
@@ -116,6 +116,7 @@ fixable = ["ALL"]
 # A list of rule codes or prefixes to ignore. Prefixes can specify exact rules
 # (like F841), entire categories (like F), or anything in between.
 ignore = [
+    "A002",
     "ANN401",
     "B008",
     "BLE001",
@@ -135,7 +136,7 @@ ignore = [
     "PLR6301",
     "S101",
     "S311",
-    "T201"
+    "T201",
 ]
 
 # Whether to enable preview mode. When preview mode is enabled, Ruff will use

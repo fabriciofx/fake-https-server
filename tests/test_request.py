@@ -22,8 +22,10 @@
 import http.client
 import ssl
 from pathlib import Path
+
 from fake_https_server.request import ContentGet, Fail, FileContentGet
 from fake_https_server.server import Daemon, FakeHttpServer, FakeHttpsServer
+
 
 def test_file_content_get() -> None:
     ca_file = Path(__file__).parent.parent / "certificates" / "ca.crt"
@@ -41,6 +43,7 @@ def test_file_content_get() -> None:
     server.stop()
     assert content == "Hello World!\n"
 
+
 def test_large_file() -> None:
     ca_file = Path(__file__).parent.parent / "certificates" / "ca.crt"
     content_file = Path(__file__).parent / "contents" / "large.html"
@@ -57,6 +60,7 @@ def test_large_file() -> None:
     html = response.read().decode()
     server.stop()
     assert content == html
+
 
 def test_fail() -> None:
     retries = 1
