@@ -22,7 +22,7 @@ wheels = [
 
 [[package]]
 name = "fake-https-server"
-version = "0.0.8"
+version = "0.0.10"
 source = { virtual = "." }
 dependencies = [
     { name = "random-port" },
@@ -34,7 +34,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "random-port", specifier = ">=0.0.5" }]
+requires-dist = [{ name = "random-port", specifier = ">=0.0.7" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest-xdist", specifier = ">=3.8.0" }]
@@ -106,9 +106,9 @@ wheels = [
 
 [[package]]
 name = "random-port"
-version = "0.0.5"
+version = "0.0.7"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/85/bd/ce940853ea83de7c781c27d5f7fc3c48524dc6d9d933445e2a23f24c26ae/random_port-0.0.5.tar.gz", hash = "sha256:7a06ff3df8cc1c4c36c0e22693a27790e05bb0c4c9333ac9f22516c78a3e3465", size = 3128, upload-time = "2025-05-12T23:34:49.224Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/35/37/49ec2b2c986e5fc34f1707b5127fe09fcfe017c8a7615b4006c9f0387b2a/random_port-0.0.7.tar.gz", hash = "sha256:b3860f3ec85641ebf882bfd359798a87cb54e4eb7a52676dbb7e964cbbefed36", size = 3146, upload-time = "2025-12-04T23:18:44.743Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d8/98/486283798c4cdd9b18c564ceb4b6a795bc24423b20273ecdeaa56b231e01/random_port-0.0.5-py3-none-any.whl", hash = "sha256:a1d4b8b4ae919918c34d26d41ba2f7f0140707426cc8932a164faf1a5afd107a", size = 5034, upload-time = "2025-05-12T23:34:47.97Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/75/17535d7bcae6b2fd32ac2dd5657e16030f9e1bc0a40463bb9aa591402c0d/random_port-0.0.7-py3-none-any.whl", hash = "sha256:781bdf258a5f6fe6c49ec49fd01436118da58039f68c622bec2d94269f9a8194", size = 5171, upload-time = "2025-12-04T23:18:43.713Z" },
 ]
