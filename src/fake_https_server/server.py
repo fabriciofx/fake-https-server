@@ -68,7 +68,7 @@ class HandlerWrapper(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         server = cast("RequestHttpServer", self.server)
-        server.request.get(self)
+        server.request.action(self)
 
 
 class FakeHttpServer(Server):

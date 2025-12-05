@@ -26,7 +26,7 @@ from pathlib import Path
 
 class Request(ABC):
     @abstractmethod
-    def get(self, handler: BaseHTTPRequestHandler) -> None:
+    def action(self, handler: BaseHTTPRequestHandler) -> None:
         pass
 
 
@@ -34,7 +34,7 @@ class ContentGet(Request):
     def __init__(self, content: str) -> None:
         self.__content = content
 
-    def get(self, handler: BaseHTTPRequestHandler) -> None:
+    def action(self, handler: BaseHTTPRequestHandler) -> None:
         handler.send_response(200)
         handler.send_header("Content-type", "text/html")
         handler.end_headers()
@@ -45,7 +45,7 @@ class FileContentGet(Request):
     def __init__(self, filename: str | Path) -> None:
         self.__filename = filename
 
-    def get(self, handler: BaseHTTPRequestHandler) -> None:
+    def action(self, handler: BaseHTTPRequestHandler) -> None:
         handler.send_response(200)
         handler.send_header("Content-type", "text/html; charset=utf8")
         handler.end_headers()
@@ -58,9 +58,9 @@ class Fail(Request):
         self.__origin = request
         self.__retries = retries
 
-    def get(self, handler: BaseHTTPRequestHandler) -> None:
+    def action(self, handler: BaseHTTPRequestHandler) -> None:
         if self.__retries > 0:
             handler.connection.close()
             self.__retries -= 1
         else:
-            self.__origin.get(handler)
+            self.__origin.action(handler)
