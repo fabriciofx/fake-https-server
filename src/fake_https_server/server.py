@@ -55,11 +55,11 @@ class Server(ABC):
 
 
 class RequestHttpServer(HTTPServer):
-    request_handler: Request
+    request: Request
 
 
 class RequestHttpsServer(HTTPServer):
-    request_handler: Request
+    request: Request
 
 
 class HandlerWrapper(BaseHTTPRequestHandler):
@@ -68,7 +68,7 @@ class HandlerWrapper(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         server = cast("RequestHttpServer", self.server)
-        server.request_handler.get(self)
+        server.request.get(self)
 
 
 class FakeHttpServer(Server):
@@ -83,7 +83,7 @@ class FakeHttpServer(Server):
         self.__httpd = RequestHttpServer(
             (self.__host, self.__port), HandlerWrapper
         )
-        self.__httpd.request_handler = request
+        self.__httpd.request = request
 
     def start(self) -> None:
         try:
@@ -124,7 +124,7 @@ class FakeHttpsServer(Server):
         self.__httpsd = RequestHttpsServer(
             (self.__host, self.__port), HandlerWrapper
         )
-        self.__httpsd.request_handler = request
+        self.__httpsd.request = request
         sslctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         sslctx.load_cert_chain(certfile=cert_file, keyfile=key_file)
         sslctx.load_verify_locations(ca_file)
