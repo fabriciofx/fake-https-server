@@ -25,9 +25,9 @@ import threading
 from abc import ABC, abstractmethod
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
-from random_port.pool import TcpRandomPort
+from random_port.pool import Port, TcpRandomPort
 
 from fake_https_server.request import Request
 
@@ -54,18 +54,21 @@ class Server(ABC):
         pass
 
 
-class HandlerWrapper(BaseHTTPRequestHandler):
-    def __init__(
-        self, request: Request, *args: tuple[Any, ...], **kwargs: dict[str, Any]
-    ) -> None:
-        self.__request = request
-        super().__init__(*args, **kwargs)
+class RequestHttpServer(HTTPServer):
+    request_handler: Request
 
+
+class RequestHttpsServer(HTTPServer):
+    request_handler: Request
+
+
+class HandlerWrapper(BaseHTTPRequestHandler):
     def log_message(self, format: str, *args: Any) -> None:
         pass
 
     def do_GET(self) -> None:
-        self.__request.get(self)
+        server = cast("RequestHttpServer", self.server)
+        server.request_handler.get(self)
 
 
 class FakeHttpServer(Server):
@@ -73,17 +76,14 @@ class FakeHttpServer(Server):
         self,
         request: Request,
         host: str = "localhost",
-        port: TcpRandomPort | int = TcpRandomPort(),
+        port: Port = TcpRandomPort(),
     ) -> None:
         self.__host = host
         self.__port = port.value()
-
-        def __handler_wrapper(
-            *args: tuple[Any, ...], **kwargs: dict[str, Any]
-        ) -> BaseHTTPRequestHandler:
-            return HandlerWrapper(request, *args, **kwargs)
-
-        self.__httpd = HTTPServer((self.__host, self.__port), __handler_wrapper)
+        self.__httpd = RequestHttpServer(
+            (self.__host, self.__port), HandlerWrapper
+        )
+        self.__httpd.request_handler = request
 
     def start(self) -> None:
         try:
@@ -110,7 +110,7 @@ class FakeHttpsServer(Server):
         self,
         request: Request,
         host: str = "localhost",
-        port: TcpRandomPort | int = TcpRandomPort(),
+        port: Port = TcpRandomPort(),
         *,
         cert_file: Path | str = "certificates/server.crt",
         key_file: Path | str = "certificates/server.key",
@@ -118,18 +118,13 @@ class FakeHttpsServer(Server):
     ) -> None:
         self.__host = host
         self.__port = port.value()
-
-        def __handler_wrapper(
-            *args: tuple[Any, ...], **kwargs: dict[str, Any]
-        ) -> BaseHTTPRequestHandler:
-            return HandlerWrapper(request, *args, **kwargs)
-
         cert_file = str(Path(cert_file).resolve())
         key_file = str(Path(key_file).resolve())
         ca_file = str(Path(ca_file).resolve())
-        self.__httpsd = HTTPServer(
-            (self.__host, self.__port), __handler_wrapper
+        self.__httpsd = RequestHttpsServer(
+            (self.__host, self.__port), HandlerWrapper
         )
+        self.__httpsd.request_handler = request
         sslctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         sslctx.load_cert_chain(certfile=cert_file, keyfile=key_file)
         sslctx.load_verify_locations(ca_file)
