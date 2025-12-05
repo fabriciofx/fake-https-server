@@ -7,7 +7,7 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.14"
 keywords = ["fake", "mock", "http", "https", "server", "request"]
-dependencies = ["random-port>=0.0.7"]
+dependencies = ["random-port>=0.0.8"]
 
 [project.urls]
 homepage = "https://github.com/fabriciofx/fake-https-server"

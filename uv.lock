@@ -34,7 +34,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "random-port", specifier = ">=0.0.7" }]
+requires-dist = [{ name = "random-port", specifier = ">=0.0.8" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest-xdist", specifier = ">=3.8.0" }]
@@ -106,9 +106,9 @@ wheels = [
 
 [[package]]
 name = "random-port"
-version = "0.0.7"
+version = "0.0.8"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/35/37/49ec2b2c986e5fc34f1707b5127fe09fcfe017c8a7615b4006c9f0387b2a/random_port-0.0.7.tar.gz", hash = "sha256:b3860f3ec85641ebf882bfd359798a87cb54e4eb7a52676dbb7e964cbbefed36", size = 3146, upload-time = "2025-12-04T23:18:44.743Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/75/74/d3f27876619ee26efcaf9ae6b95883cfb365659791615f2c847f9669bcb5/random_port-0.0.8.tar.gz", hash = "sha256:a31e1b62f73aae54478db4cc50f9ce2fe3bde3690c6259af72f4020fa23855f3", size = 3282, upload-time = "2025-12-05T01:16:18.141Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/cf/75/17535d7bcae6b2fd32ac2dd5657e16030f9e1bc0a40463bb9aa591402c0d/random_port-0.0.7-py3-none-any.whl", hash = "sha256:781bdf258a5f6fe6c49ec49fd01436118da58039f68c622bec2d94269f9a8194", size = 5171, upload-time = "2025-12-04T23:18:43.713Z" },
+    { url = "https://files.pythonhosted.org/packages/58/82/8d27df5fec62a89325c2bcd4b5cef636da5543e3546723796c31cbefc3ea/random_port-0.0.8-py3-none-any.whl", hash = "sha256:6dcf7b651e85091ab20cd0db7abd4576ec66899bbdff50d2ad648c6c0abacc63", size = 5272, upload-time = "2025-12-05T01:16:16.798Z" },
 ]
