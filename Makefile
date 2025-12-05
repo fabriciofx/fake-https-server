@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-.PHONY: install tests lint format clean
+.PHONY: install tests lint format dist clean
 
 install:
 	uv sync
@@ -33,6 +33,9 @@ lint:
 
 format:
 	uv run ruff format .
+
+dist:
+	uv build
 
 clean:
 	rm -rf .venv dist *.egg-info
