@@ -20,21 +20,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-.PHONY: install tests lint format dist clean
+.PHONY: install test check format dist upgrade clean
 
 install:
 	uv sync
 
-tests:
+test:
 	uv run pytest
 
-lint:
+check:
 	uv run ruff check .
+	uv run zuban check
 
 format:
 	uv run ruff format .
 
-dist:
+upgrade:
+	uv sync --upgrade
+
+dist: check test
 	uv build
 
 clean:
