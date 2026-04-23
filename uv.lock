@@ -22,7 +22,7 @@ wheels = [
 
 [[package]]
 name = "fake-https-server"
-version = "0.0.12"
+version = "0.0.13"
 source = { editable = "." }
 dependencies = [
     { name = "random-port" },
