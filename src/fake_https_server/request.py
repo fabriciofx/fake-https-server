@@ -41,6 +41,17 @@ class ContentGet(Request):
         handler.wfile.write(self.__content.encode())
 
 
+class ContentPost(Request):
+    def __init__(self, content: str) -> None:
+        self.__content = content
+
+    def action(self, handler: BaseHTTPRequestHandler) -> None:
+        handler.send_response(200)
+        handler.send_header("Content-type", "text/html")
+        handler.end_headers()
+        handler.wfile.write(self.__content.encode())
+
+
 class FileContentGet(Request):
     def __init__(self, filename: str | Path) -> None:
         self.__filename = filename

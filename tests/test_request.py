@@ -23,7 +23,12 @@ import http.client
 import ssl
 from pathlib import Path
 
-from fake_https_server.request import ContentGet, Fail, FileContentGet
+from fake_https_server.request import (
+    ContentGet,
+    ContentPost,
+    Fail,
+    FileContentGet,
+)
 from fake_https_server.server import Daemon, FakeHttpServer, FakeHttpsServer
 
 
@@ -77,3 +82,20 @@ def test_fail() -> None:
         response = client.getresponse()
     assert response.read().decode() == msg
     server.stop()
+
+
+def test_content_post() -> None:
+    ca_file = Path(__file__).parent.parent / "certificates" / "ca.crt"
+    msg = "Hello World!"
+    server = Daemon(FakeHttpsServer(ContentPost(msg)))
+    server.start()
+    client = http.client.HTTPSConnection(
+        "localhost",
+        server.port(),
+        context=ssl.create_default_context(cafile=ca_file),
+    )
+    client.request("POST", "/")
+    response = client.getresponse()
+    content = response.read().decode()
+    server.stop()
+    assert content == msg

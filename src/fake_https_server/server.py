@@ -70,6 +70,10 @@ class HandlerWrapper(BaseHTTPRequestHandler):
         server = cast("RequestHttpServer", self.server)
         server.request.action(self)
 
+    def do_POST(self) -> None:
+        server = cast("RequestHttpServer", self.server)
+        server.request.action(self)
+
 
 class FakeHttpServer(Server):
     def __init__(
