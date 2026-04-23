@@ -1,7 +1,6 @@
-# SPDX-FileCopyrightText: Copyright (C) 2025 Fabrício Barros Cabral
+# SPDX-FileCopyrightText: Copyright (C) 2025-2026 Fabrício Barros Cabral
 # SPDX-License-Identifier: MIT
 ---
-# yamllint disable rule:line-length
 name: python-tests
 'on':
   push:
@@ -16,8 +15,9 @@ permissions:
   contents: read
 jobs:
   python-tests:
+    # yamllint disable-line rule:line-length
     uses: fabriciofx/github-workflows/.github/workflows/python-tests-template.yml@main
     secrets:
-      ssl_server_key: ${{ secrets.SSL_SERVER_KEY }}
-      ssl_server_crt: ${{ secrets.SSL_SERVER_CRT }}
-      ssl_ca_crt: ${{ secrets.SSL_CA_CRT }}
+      SSL_SERVER_KEY: ${{ secrets.SSL_SERVER_KEY }}
+      SSL_SERVER_CRT: ${{ secrets.SSL_SERVER_CRT }}
+      SSL_CA_CRT: ${{ secrets.SSL_CA_CRT }}

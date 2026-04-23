@@ -60,7 +60,7 @@ server.start()
 client = http.client.HTTPSConnection(
     "localhost",
     server.port(),
-    context=ssl.create_default_context(cafile=ca_file)
+    context=ssl.create_default_context(cafile=ca_file),
 )
 client.request("GET", "/")
 # Get the server response
